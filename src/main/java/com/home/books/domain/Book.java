@@ -10,7 +10,7 @@ import java.util.Objects;
 
 @ApiModel(subTypes = {NonFictionBook.class, FictionBook.class})
 @Entity
-@Inheritance @DiscriminatorColumn(name="BOOK_TYPE")
+@Inheritance @DiscriminatorColumn(name="BOOKTYPE")
 @JsonPropertyOrder({ "id", "type", "title", "author" }) //TODO Jackson annotations semantics: https://www.baeldung.com/jackson-annotations & https://github.com/FasterXML/jackson-annotations
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
@@ -18,12 +18,17 @@ import java.util.Objects;
     @JsonSubTypes.Type(value = NonFictionBook.class, name = "NF")
 })
 public abstract class Book {
-    /** TODO Validation Framework */
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) @PositiveOrZero private long id;
     @Size(max = 50) @NotEmpty
     private String title;
     @Size(max = 50) @NotEmpty
     private String author;
+    @Size(max = 50) @NotEmpty
+    private String bookType;
+
+    public String getBookType() {
+        return bookType;
+    }
 
     public String getTitle() {
         return title;
@@ -44,9 +49,10 @@ public abstract class Book {
     /** No-arg constructor needed by JPA */
     public Book() { }
 
-    public Book(String title, String author) {
+    public Book(String title, String author, String bookType) {
         this.title = title;
         this.author = author;
+        this.bookType = bookType;
     }
 
     @ApiModelProperty(allowableValues = "F,NF")
@@ -60,7 +66,8 @@ public abstract class Book {
         if (o == null || getClass() != o.getClass()) return false;
         Book book = (Book) o;
         return getTitle().equals(book.getTitle()) &&
-                getAuthor().equals(book.getAuthor()) ;
+                getAuthor().equals(book.getAuthor())
+                && getBookType().equals(book.getBookType()) ;
     }
 
     @Override
@@ -73,7 +80,8 @@ public abstract class Book {
         return "Book{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", author='" + author +
+                ", author='" + author + '\'' +
+                ", bookType='" + bookType + '\'' +
                 '}';
     }
 }

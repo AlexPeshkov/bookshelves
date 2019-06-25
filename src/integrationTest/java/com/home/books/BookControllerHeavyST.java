@@ -48,22 +48,19 @@ public class BookControllerHeavyST {
         );
     }
 
-    @Ignore("To FIX")
     @Test
     public void shouldGetAllBookWhenUsePrePopulatedFakeDb() {
-        //TODO Can be simple but need for headers: restTemplate.getForObject(baseUrl + "/books", Book[].class);
         ResponseEntity<Book[]> response = restTemplate.exchange(request, Book[].class);
-        logger.debug(">>>>> ");
         for (Book book : response.getBody()) {
             logger.debug(book.toString());
         }
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).containsOnly(
-                new FictionBook("The Count of Monte Cristo", "Alexandre Dumas"),
-                new FictionBook("A Game of Thrones", "George R.R. Martin"),
-                new FictionBook("George R.R. Martin", "Antoine de Saint-Exupery"),
-                new NonFictionBook("Between the world and me", "Ta-Nehisi Coates"),
-                new NonFictionBook("1176", "David McCullough"));
+                new FictionBook("The Count of Monte Cristo", "Alexandre Dumas", "F"),
+                new FictionBook("A Game of Thrones", "George R.R. Martin", "F"),
+                new FictionBook("George R.R. Martin", "Antoine de Saint-Exupery", "F"),
+                new NonFictionBook("Between the world and me", "Ta-Nehisi Coates", "NF"),
+                new NonFictionBook("1176", "David McCullough", "NF"));
     }
 }

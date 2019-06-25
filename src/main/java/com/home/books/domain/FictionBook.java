@@ -14,8 +14,8 @@ public class FictionBook extends Book {
 
     public FictionBook() { }
 
-    public FictionBook(String title, String author) {
-        super(title, author);
+    public FictionBook(String title, String author, String bookType) {
+        super(title, author, bookType);
     }
 
     @Override

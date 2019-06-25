@@ -23,20 +23,17 @@ public class BookControllerLightST {
     @Autowired private MockMvc mockMvc;
     @Autowired Logger logger;
 
-    @Ignore("To FIX")
     @Test
     public void shouldGetPrePopulatedBooksFromFakeDb() throws Exception {
         logger.info("Got test books: " +
             mockMvc.perform(get("/api/books").header("X-API-VERSION", "1"))
                     .andExpect(status().is2xxSuccessful())
-                    .andExpect(jsonPath("$.length()").value("4"))
+                    .andExpect(jsonPath("$.length()").value("5"))
                     .andReturn()
                         .getResponse().getContentAsString()
         );
     }
 
-    @Ignore("To FIX")
-    //TODO Extend for all json path
     @Test
     public void shouldGetFirstPrePopulatedBookFromFakeDb() throws Exception {
         mockMvc.perform(get("/api/books/1").header("X-API-VERSION", "1"))

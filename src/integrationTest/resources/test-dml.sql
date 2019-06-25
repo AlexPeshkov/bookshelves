@@ -1,4 +1,5 @@
-insert into BOOK(TITLE, AUTHOR, BOOK_TYPE) values('A', 'A1', 'F');
-insert into BOOK(TITLE, AUTHOR, BOOK_TYPE) values('B', 'B1', 'F');
-insert into BOOK(TITLE, AUTHOR, BOOK_TYPE) values('C', 'C1', 'NF');
-insert into BOOK(TITLE, AUTHOR, BOOK_TYPE) values('D', 'D1', 'NF');
+insert into BOOK(TITLE, AUTHOR, BOOKTYPE) values('The Count of Monte Cristo', 'Alexandre Dumas', 'F');
+insert into BOOK(TITLE, AUTHOR, BOOKTYPE) values('A Game of Thrones', 'George R.R. Martin', 'F');
+insert into BOOK(TITLE, AUTHOR, BOOKTYPE) values('George R.R. Martin', 'Antoine de Saint-Exupery', 'F');
+insert into BOOK(TITLE, AUTHOR, BOOKTYPE) values('Between the world and me', 'Ta-Nehisi Coates', 'NF');
+insert into BOOK(TITLE, AUTHOR, BOOKTYPE) values('1176', 'David McCullough', 'NF');

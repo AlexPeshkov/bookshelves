@@ -13,8 +13,8 @@ import java.util.Date;
 public class NonFictionBook extends Book {
     public NonFictionBook() { }
 
-    public NonFictionBook(String title, String author) {
-        super(title, author);
+    public NonFictionBook(String title, String author, String bookType) {
+        super(title, author, bookType);
     }
 
     @Override

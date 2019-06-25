@@ -33,7 +33,7 @@ public class BookController {
     @GetMapping(path = "/books", headers = "X-API-VERSION=1")
     @ApiOperation(value = "View a list of all books", response = Collection.class)
     @ApiResponses(value = {
-            @ApiResponse(code = 200, message = "Successfully retrieved list"),
+            @ApiResponse(code = 200, message = "Successfully retrieved all books"),
             @ApiResponse(code = 401, message = "You are not authorized to view the resource"),
             @ApiResponse(code = 403, message = "Accessing the resource you were trying to reach is forbidden"),
             @ApiResponse(code = 404, message = "The resource you were trying to reach is not found")

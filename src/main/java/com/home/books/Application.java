@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
  * How to Run:
  * > java -jar target/bookshelves-1.0-SNAPSHOT.jar -Dfile.encoding=Cp866
  * or
- * > mvn clean spring-boot:run
+ * > mvn spring-boot:run
  *
  * > Swagger : http://localhost:8080/swagger-ui.html
  */

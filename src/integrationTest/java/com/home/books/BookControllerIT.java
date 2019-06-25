@@ -31,7 +31,6 @@ public class BookControllerIT {
     @Autowired private Logger logger;
     @MockBean private BooksRepository books; //TODO MockBean semantics
 
-    @Ignore("TO FIX")
     @Test
     public void shouldGetNoBooksWhenBooksRepoIsEmpty() throws Exception {
         when(books.findAll()).thenReturn(Collections.emptyList());
@@ -43,13 +42,11 @@ public class BookControllerIT {
 
     @Test
     public void shouldGetTheOneBookWhenRepoIsPrePopulated() throws Exception {
-        NonFictionBook bookstub = new NonFictionBook("Test Book", "Test Author");
+        NonFictionBook bookstub = new NonFictionBook("Test Book", "Test Author", "NF");
         when(books.findAll()).thenReturn(asList(bookstub));
 
         mockMvc.perform(get("/api/books").header("X-API-VERSION", "1"))
                 .andExpect(status().is2xxSuccessful())
                 .andExpect(jsonPath("$.length()").value("1"));
-                    //.andExpect(jsonPath("$[0].amount").value("100.0"))
-                    //.andExpect(jsonPath("$[0].email").value("sa@sa.sa"));
     }
 }

@@ -12,6 +12,12 @@
 		<version>2.1.4.RELEASE</version>
 	</parent>
 
+	<properties>
+		<allure.version>1.3.6</allure.version>
+		<aspectj.version>1.8.10</aspectj.version>
+		<allure-junit5.version>2.7.0</allure-junit5.version>
+	</properties>
+
 	<build>
 		<plugins>
             <plugin>
@@ -79,6 +85,42 @@
 						<exclude>**/*IT.java</exclude>
 						<exclude>**/*ST.java</exclude>
 					</excludes>
+					<testFailureIgnore>false</testFailureIgnore>
+					<argLine>
+						-javaagent:${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar
+					</argLine>
+					<runOrder>alphabetical</runOrder>
+					<systemProperties>
+						<property>
+							<name>junit.jupiter.extensions.autodetection.enabled</name>
+							<value>true</value>
+						</property>
+						<property>
+							<name>allure.results.directory</name>
+							<value>${basedir}/target/allure-results</value>
+						</property>
+					</systemProperties>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.junit.platform</groupId>
+						<artifactId>junit-platform-surefire-provider</artifactId>
+						<version>1.3.2</version>
+					</dependency>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>2.10.0</version>
+				<configuration>
+					<resultsDirectory>${basedir}/target/allure-results</resultsDirectory>
+					<reportDirectory>${basedir}/target/allure-reports</reportDirectory>
 				</configuration>
 			</plugin>
 			<!-- To make an executable jar [FAT JAR which includes all dependencies along with sprinboot loader] that you can run on commandline using java -jar NAME -->
@@ -133,6 +175,17 @@
 	</build>
 
 	<dependencies>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-junit5</artifactId>
+			<version>${allure-junit5.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>ru.yandex.qatools.allure</groupId>
+			<artifactId>allure-junit-adaptor</artifactId>
+			<version>${allure.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
